@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>折页小册子拼版工具 · 社区印刷点</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>折页小册子拼版工具</h1>
+    <p class="subtitle">上传按阅读顺序排列的多页 PDF，自动生成 A4 横向双面拼版文件，短边翻转打印、折叠后页码连续。</p>
+  </header>
+
+  <main class="container">
+    <section class="card" id="upload-card">
+      <h2>1. 选择 PDF</h2>
+      <label id="drop-zone" for="file-input">
+        <input type="file" id="file-input" accept="application/pdf,.pdf" hidden />
+        <span class="drop-icon">📄</span>
+        <span class="drop-text">点击选择 PDF 文件，或将文件拖拽到此处</span>
+        <span class="drop-hint">请确保 PDF 页序即为阅读顺序（封面为第 1 页）</span>
+        <span id="file-name" class="file-name"></span>
+      </label>
+
+      <h2>2. 选择每帖纸张数</h2>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="sheets" value="1" checked />
+          <span><strong>每帖 1 张纸</strong><em>4 页 / 帖 · 单张对折，适合薄册子</em></span>
+        </label>
+        <label class="option">
+          <input type="radio" name="sheets" value="2" />
+          <span><strong>每帖 2 张纸</strong><em>8 页 / 帖 · 两张嵌套对折，适合较厚册子</em></span>
+        </label>
+      </div>
+
+      <button id="submit-btn" type="button" disabled>生成拼版 PDF</button>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="result" class="card hidden">
+      <h2>3. 拼版预览与下载</h2>
+      <div id="summary" class="summary"></div>
+
+      <div class="print-hint">
+        <strong>打印设置：</strong>A4 纸 · 横向 · 双面打印 ·
+        <strong>短边翻转</strong>（沿短边翻页）· 逐张打印后每张沿中线对折，按帖套叠装订。
+      </div>
+
+      <div id="signatures"></div>
+
+      <div class="actions">
+        <a id="download-link" class="download-btn" href="#" download="booklet-imposed.pdf">⬇ 下载拼版 PDF</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>文件在服务器内存中仅暂存 10 分钟，刷新或过期后需重新上传。</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
